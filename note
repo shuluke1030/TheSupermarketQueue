@@ -1,0 +1,21 @@
+customers = 陣列內每一個位置代表著每個客戶結帳所需時間
+n = 同時結帳人
+return 所需總時
+def queue_time(customers, n):
+    if not customers:
+        return 0
+    if n == 1:
+        return sum(customers)
+
+    tills = [0] * n  # 結帳台等待時間列表
+
+    for Time in customers:
+        # 找到當前等待時間最短的結帳台
+        min_till = min(tills)
+
+        # 加入等待隊列，更新結帳台等待時間
+        min_index = tills.index(min_till)
+        tills[min_index] += Time
+
+    # 總結帳時間等於所有結帳台等待時間的最大值
+    return max(tills)
